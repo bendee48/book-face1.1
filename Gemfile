@@ -29,6 +29,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 # Env variables
 gem 'figaro', '~> 1.2'
+# Authentication
+gem 'devise', '~> 4.7', '>= 4.7.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -42,6 +44,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'hirb', '~> 0.7.3'
 end
 
 group :test do
