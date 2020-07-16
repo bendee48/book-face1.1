@@ -52,6 +52,8 @@ RSpec.describe User, type: :model do
       it "is added to a user's .friends_of" do
         # doesn't work not sure why
       end
+
+      it 'adds a friend once only'
     end
   end
 end
