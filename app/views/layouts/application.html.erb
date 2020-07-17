@@ -13,6 +13,7 @@
     <% if user_signed_in? %>
       <p><%= current_user.name %> is logged in.</p>
       <p><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></p>
+      <p>You have <%= link_to pluralize(current_user.request_users.size, 'friend request'), friend_requests_path %></p>
     <% end %>
     
     <%= flash.notice %>
