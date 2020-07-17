@@ -12,4 +12,5 @@ class User < ApplicationRecord
   has_many :friend_ofs, through: :friend_of_friendships, source: :friend_of  
 
   has_many :friend_requests
+  has_many :requests, through: :friend_requests, source: :request
 end
