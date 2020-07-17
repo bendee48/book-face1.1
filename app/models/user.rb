@@ -10,4 +10,6 @@ class User < ApplicationRecord
   
   has_many :friend_of_friendships, foreign_key: :friend_id, class_name: 'Friendship', dependent: :destroy
   has_many :friend_ofs, through: :friend_of_friendships, source: :friend_of  
+
+  has_many :friend_requests
 end
