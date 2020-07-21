@@ -3,7 +3,11 @@ class FriendshipsController < ApplicationController
     @user = User.find(current_user.id)
     @potential_friend = User.find(params[:user_id])
 
-    @user.friends << @potential_friend
+    begin
+      @user.friends << @potential_friend
+    rescue
+      flash.notice = "Already friends."
+    end
 
     @user.request_users.destroy(User.find(@potential_friend.id))
 
