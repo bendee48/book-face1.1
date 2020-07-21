@@ -1,6 +1,10 @@
 <h1><%= @user.name.capitalize %></h1>
 <p>Find me in app/views/users/show.html.erb</p>
-<%= button_to 'Friend Me',  friend_requests_path, params: { friend_id: @user.id } %>
+
+
+<% unless friends_already?(@user) %>
+  <%= button_to 'Friend Me',  friend_requests_path, params: { friend_id: @user.id } %>
+<% end %>
 
 <h2>Friends</h2>
 <% @user.all_friends.each do |f| %>
