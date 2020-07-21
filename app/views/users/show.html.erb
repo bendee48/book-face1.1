@@ -2,7 +2,7 @@
 <p>Find me in app/views/users/show.html.erb</p>
 
 
-<% unless friends_already?(@user) %>
+<% unless friends_already?(@user) || @user.id == current_user.id %>
   <%= button_to 'Friend Me',  friend_requests_path, params: { friend_id: @user.id } %>
 <% end %>
 
