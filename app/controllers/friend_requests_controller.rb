@@ -11,4 +11,12 @@ class FriendRequestsController < ApplicationController
 
     redirect_to root_path
   end
+
+  def destroy
+    @user = User.find(params[:id])
+
+    @user.request_users.destroy(User.find(params[:friend_id]))
+
+    render :index
+  end
 end

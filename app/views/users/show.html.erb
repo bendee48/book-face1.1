@@ -3,6 +3,6 @@
 <%= button_to 'Friend Me',  friend_requests_path, params: { friend_id: @user.id } %>
 
 <h2>Friends</h2>
-<% @user.friends.each do |f| %>
+<% @user.all_friends.each do |f| %>
   <p><%= f.name %></p>
 <% end %>

@@ -13,4 +13,8 @@ class User < ApplicationRecord
 
   has_many :friend_requests, dependent: :destroy
   has_many :request_users, through: :friend_requests, source: :request_user
+
+  def all_friends
+    friends + friend_ofs
+  end
 end
