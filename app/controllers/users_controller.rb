@@ -7,9 +7,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.includes(:friends).find(params[:id])
-  end
-
-  def friends_already?(friend)
-    current_user.all_friends.include?(friend)
+    @post = Post.new
+    @posts = @user.posts
   end
 end
