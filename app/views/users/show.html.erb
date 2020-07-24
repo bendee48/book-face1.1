@@ -17,6 +17,7 @@
 <% if @posts %>
   <% @posts.each do |post| %>
     <p><%= post.body %></p>
+    <%= button_to 'like', '#' %>
   <% end %>
 <% end %>
 
