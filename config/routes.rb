@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show] do
     resources :posts
   end
+  resources :likes, only: [:create]
   resources :friendships, only: [:create]
   resources :friend_requests, only: [:create, :index, :destroy]
 end
