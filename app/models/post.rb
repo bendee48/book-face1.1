@@ -3,4 +3,5 @@ class Post < ApplicationRecord
   has_many :likes, as: :likeable
 
   validates :body, presence: true
+  validates_associated :likes, message: "Already liked."
 end

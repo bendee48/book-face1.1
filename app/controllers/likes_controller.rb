@@ -7,7 +7,9 @@ class LikesController < ApplicationController
       flash.notice = "Post liked!"
       redirect_back(fallback_location: root_path)
     else
-      flash.notice = "Something went wrong!"
+      flash.notice = @post.errors[:likes].last
+      p @post.errors
+      redirect_back(fallback_location: root_path)
     end
   end
 end
