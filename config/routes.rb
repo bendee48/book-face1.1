@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+  get 'comments/create'
   root 'users#index'
   devise_for :users
   resources :users, only: [:index, :show] do
     resources :posts
   end
   resources :likes, only: [:create]
+  resources :comments, only: [:create, :destroy]
   resources :friendships, only: [:create]
   resources :friend_requests, only: [:create, :index, :destroy]
 end

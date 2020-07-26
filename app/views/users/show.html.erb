@@ -9,16 +9,30 @@
 <% if current_user == @user %>
   <%= form_with model: @post, url: user_posts_path(@user), local: true do |f| %>
     <%= f.label :body %>
-    <%= f.text_field :body %>
+    <%= f.text_area :body %>
     <%= f.submit %>
   <% end %>
 <% end %>
 
 <% if @posts %>
   <% @posts.each do |post| %>
+    <h4>A Post</h4>
     <p><%= post.body %></p>
     <p>Likes: <%= post.likes.count %></p>
     <%= button_to 'like', likes_path, params: { user_id: current_user.id, post_id: post.id } %>
+    <h4>Comments</h4>
+      <ul>
+        <% post.comments.each do |comment| %>
+          <li><%= comment.body %></li>
+        <% end %>
+      </ul>
+
+    <%= form_with model: @comment, url: comments_path, local: true do |f| %>
+      <%= f.hidden_field :post_id, value: post.id %>
+      <%= f.text_area :body %>
+      <%= f.submit %>
+    <% end %>
+
   <% end %>
 <% end %>
 

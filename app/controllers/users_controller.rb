@@ -9,5 +9,6 @@ class UsersController < ApplicationController
     @user = User.includes(:friends).find(params[:id])
     @post = Post.new
     @posts = @user.posts
+    @comment = Comment.new
   end
 end
