@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'comments/create'
-  root 'users#index'
+  root 'posts#index'
   devise_for :users
   resources :users, only: [:index, :show] do
     resources :posts
