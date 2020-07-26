@@ -4,5 +4,6 @@ class Post < ApplicationRecord
   has_many :comments, as: :commentable
 
   validates :body, presence: true
+  validates_associated :comments
   validates_associated :likes, message: "Already liked."
 end

@@ -1,13 +1,13 @@
 class LikesController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
-    @post.likes.build(user_id: params[:user_id])
+    @like = @post.likes.build(user_id: params[:user_id])
 
-    if @post.save
+    if @like.save
       flash.notice = "Post liked!"
       redirect_back(fallback_location: root_path)
     else
-      flash.notice = @post.errors[:likes].last
+      flash.notice = @like.errors[:user_id].join(',')
       redirect_back(fallback_location: root_path)
     end
   end

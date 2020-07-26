@@ -20,6 +20,7 @@
     <p><%= post.body %></p>
     <p>Likes: <%= post.likes.count %></p>
     <%= button_to 'like', likes_path, params: { user_id: current_user.id, post_id: post.id } %>
+    
     <h4>Comments</h4>
       <ul>
         <% post.comments.each do |comment| %>
