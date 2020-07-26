@@ -1,4 +1,8 @@
 class PostsController < ApplicationController
+  def index
+    @posts = Post.posts_of_user_and_friends(current_user)
+  end
+
   def create
     @user = User.find(params[:user_id])
     @post = @user.posts.build(post_params)

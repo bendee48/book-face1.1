@@ -6,4 +6,8 @@ class Post < ApplicationRecord
   validates :body, presence: true
   validates_associated :comments
   validates_associated :likes, message: "Already liked."
+
+  def self.posts_of_user_and_friends(user)
+    where(user_id: user.friend_ids << user.id).order(created_at: :desc)
+  end
 end
