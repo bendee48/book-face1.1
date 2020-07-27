@@ -31,6 +31,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'figaro', '~> 1.2'
 # Authentication
 gem 'devise', '~> 4.7', '>= 4.7.2'
+# Facebook Omniauth
+gem 'omniauth-facebook', '~> 6.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
