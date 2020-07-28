@@ -12,7 +12,6 @@
 
 <% if current_user == @user %>
   <%= form_with model: @post, url: user_posts_path(@user), local: true do |f| %>
-    <%= f.label :body %>
     <%= f.text_area :body %>
     <%= f.submit %>
   <% end %>

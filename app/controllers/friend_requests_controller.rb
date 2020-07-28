@@ -9,7 +9,7 @@ class FriendRequestsController < ApplicationController
 
     @friend.request_users << @user
 
-    redirect_to root_path
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy

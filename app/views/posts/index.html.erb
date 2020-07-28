@@ -3,7 +3,7 @@
 <ul>
   <% @posts.each do |post| %>
     <li><%= post.body %></li>
-    <p>- <%= post.created_at %></p>
+    <p>- <%= post.created_at.strftime("%H:%M | %d/%m/%y") %></p>
     <p>- <%= post.user.name %></p>
   <% end %>
 </ul>
