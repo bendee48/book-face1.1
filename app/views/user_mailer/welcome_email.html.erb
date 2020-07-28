@@ -1,1 +1,17 @@
-<h1>Hello, Welcome to BookFace</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hi <%= @user.name.titleize %>, Welcome to BookFace</h1>
+    <p>
+      You have successfully signed up to BookFace.com,
+      have fun facing books or whatever it is this site does.<br>
+    </p>
+    <p>
+      Login <%= link_to 'here', root_url %>.
+    </p>
+    <p>Thanks for joining and have a great day!</p>
+  </body>
+</html>
