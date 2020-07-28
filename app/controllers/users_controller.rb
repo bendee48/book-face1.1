@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def show
     @user = User.includes(:friends).find(params[:id])
     @post = Post.new
-    @posts = @user.posts
+    @posts = @user.posts.order(created_at: :desc)
     @comment = Comment.new
   end
 end

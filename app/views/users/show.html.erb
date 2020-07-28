@@ -5,39 +5,43 @@
 <% end %>
 
 <% unless friends_already?(@user) || @user.id == current_user.id %>
+  <p>We need to be friends for you to see my profile.</p>
   <%= button_to 'Friend Me',  friend_requests_path, params: { friend_id: @user.id } %>
 <% end %>
 
-<h2>Posts</h2>
+<% if friends_already?(@user) || @user.id == current_user.id %>
+  <h2>Posts</h2>
 
-<% if current_user == @user %>
-  <%= form_with model: @post, url: user_posts_path(@user), local: true do |f| %>
-    <%= f.text_area :body %>
-    <%= f.submit %>
-  <% end %>
-<% end %>
-
-<% if @posts %>
-  <% @posts.each do |post| %>
-    <h4>A Post</h4>
-    <p><%= post.body %></p>
-    <p>Likes: <%= post.likes.count %></p>
-    <%= button_to 'like', likes_path, params: { user_id: current_user.id, post_id: post.id } %>
-    
-    <h4>Comments</h4>
-      <ul>
-        <% post.comments.each do |comment| %>
-          <li><%= comment.body %></li>
-          <p>- <%= current_user.name %></p>
-        <% end %>
-      </ul>
-
-    <%= form_with model: @comment, url: comments_path, local: true do |f| %>
-      <%= f.hidden_field :post_id, value: post.id %>
+  <% if current_user == @user %>
+    <%= form_with model: @post, url: user_posts_path(@user), local: true do |f| %>
       <%= f.text_area :body %>
       <%= f.submit %>
     <% end %>
+  <% end %>
 
+  <% if @posts %>
+    <% @posts.each do |post| %>
+      <h4>A Post</h4>
+      <p><%= post.body %></p>
+      <p>- <%= post.created_at.strftime("%H:%M | %d/%m/%y") %></p>
+      <p>Likes: <%= post.likes.count %></p>
+      <%= button_to 'like', likes_path, params: { user_id: current_user.id, post_id: post.id } %>
+      
+      <h4>Comments</h4>
+        <ul>
+          <% post.comments.each do |comment| %>
+            <li><%= comment.body %></li>
+            <p>- <%= comment.user.name %></p>
+          <% end %>
+        </ul>
+
+      <%= form_with model: @comment, url: comments_path, local: true do |f| %>
+        <%= f.hidden_field :post_id, value: post.id %>
+        <%= f.text_area :body %>
+        <%= f.submit %>
+      <% end %>
+
+    <% end %>
   <% end %>
 <% end %>
 
