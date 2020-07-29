@@ -12,7 +12,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
-
     @user = current_user
     @url = root_url
     UserMailer.with(user: @user).welcome_email.deliver_now
