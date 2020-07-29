@@ -4,15 +4,14 @@ class FriendRequestsController < ApplicationController
   end
 
   def create
-    @user = User.find(current_user.id)
     @friend = User.find(params[:friend_id])
-    @friend_request = @user.friend_requests.build(friend_id: @friend.id)
+    @friend_request = @friend.friend_requests.build(friend_id: current_user.id)
 
     if @friend_request.save
       flash.notice = "Friend request sent."
       redirect_back(fallback_location: root_path)
     else
-      flash.notice = "waaah"
+      flash.notice = @friend_request.errors[:user_id].join(',')
       redirect_back(fallback_location: root_path)
     end    
   end
