@@ -33,6 +33,8 @@ gem 'figaro', '~> 1.2'
 gem 'devise', '~> 4.7', '>= 4.7.2'
 # Facebook Omniauth
 gem 'omniauth-facebook', '~> 6.0'
+# Using AWS with Active storage
+gem "aws-sdk-s3", require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
