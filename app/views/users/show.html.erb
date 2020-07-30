@@ -28,10 +28,12 @@
         <p><%= image_tag(post.photo, size: '200') %></p>
       <% end %>
       <p>- <%= post.created_at.strftime("%H:%M | %d/%m/%y") %></p>
-      # Likes
+
+      <!-- Likes-->
       <p>Likes: <%= post.likes.count %></p>
       <%= button_to 'like', likes_path, params: { user_id: current_user.id, post_id: post.id } %>
       
+      <!-- Comments-->
       <h4>Comments</h4>
         <ul>
           <% post.comments.each do |comment| %>
