@@ -9,8 +9,8 @@ local:
 # Use rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 amazon:
   service: S3
-  access_key_id: <%= Env.figaro.aws_key_id %>
-  secret_access_key: <%= Env.figaro.aws_secret_key %>
+  access_key_id: <%= Figaro.env.aws_key_id %>
+  secret_access_key: <%= Figaro.env.aws_secret_key %>
   region: eu-london
   bucket: book-face-images
 
