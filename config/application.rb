@@ -19,8 +19,10 @@ module BookFace
     # Mailer urls
     config.action_mailer.default_url_options = { host: 'localhost:3000' }
 
-    console do
-      Hirb.enable 
+    if Rails.env.development?
+      console do
+        Hirb.enable 
+      end
     end
   end
 end
