@@ -1,12 +1,31 @@
 <h1>Timeline</h1>
 
+<% @posts.each do |post| %>
+  <div class="card text-center">
+    <div class="card-header">
+      <%= post.user.name %>
+    </div>
+    <div class="card-body">
+      <p class="card-text"><%= post.body %></p>
+      <% if post.photo.attached? %>
+        <div><%= image_tag(post.photo, size: '100') %></div>
+      <% end %>
+    </div>
+    <div class="card-footer text-muted">
+      <p>likes: <%= post.likes.count %></p>
+      <p><%= time_ago_in_words(post.created_at) %> ago</p>
+      <%= button_to 'like', likes_path, params: { user_id: current_user.id, post_id: post.id } %>
+    </div>
+  </div>
+<% end %>
+
 <ul>
   <% @posts.each do |post| %>
     <li><%= post.body %></li>
     <% if post.photo.attached? %>
       <div><%= image_tag(post.photo, size: '100') %></div>
     <% end %>
-    <p>- <%= post.created_at.strftime("%H:%M | %d/%m/%y") %></p>
+    <p>- <%= time_ago_in_words(post.created_at) %> ago</p>
     <p>- <%= post.user.name %></p>
     <p>Likes: <%= post.likes.count %></p>
     <%= button_to 'like', likes_path, params: { user_id: current_user.id, post_id: post.id } %>
