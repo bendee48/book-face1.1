@@ -1,24 +1,59 @@
 <div class="container">
-  <div class="row justify-content-center mt-4">
-    <h1 class="text-center mt-4 mr-4"><%= @user.name.titleize %>'s Profile</h1>
+  <div class="row justify-content-center mt-4 align-items-center">
+    <h1 class="mt-4 mr-4"><%= @user.name.titleize %>'s Profile</h1>
     <% if @user.profile_pic.attached? %>
       <%= image_tag(url_for(@user.profile_pic), size: '100') %>
     <% end %>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-outline-success ml-4 mt-4" data-toggle="modal" data-target="#exampleModal" id: 'logo'>
+      Friends
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Friends</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <% @user.all_friends.each do |friend| %>
+              <%= link_to friend.name, user_path(friend), class: "btn btn-info btn-block" %>
+            <% end %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="container">
-  <% unless friends_already?(@user) || @user.id == current_user.id %>
-    <p>We need to be friends for you to see my profile.</p>
-    <%= button_to 'Friend Me',  friend_requests_path, params: { friend_id: @user.id } %>
-  <% end %>
 
+<% unless friends_already?(@user) || @user.id == current_user.id %>
+  <div class="container d-flex justify-content-center mt-4">
+    <div class="shadow p-3 col-6 text-align-center">
+      <div class="row justify-content-center">
+        <p>We need to be friends for you to see my profile.</p>
+      </div>
+      <div class= "row justify-content-center">
+        <%= button_to 'Friend Me',  friend_requests_path, params: { friend_id: @user.id }, class: "btn btn-outline-success" %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
+<div class="container">
   <% if friends_already?(@user) || @user.id == current_user.id %>
     <div class="row justify-content-center">
-      <div class="col-8">
+      <div class="col-8 mt-4">
         <h2>Posts</h2>
         <% if current_user == @user %>
-          <%= form_with model: @post, url: user_posts_path(@user), local: true, class: "form-inline" do |f| %>
+          <%= form_with model: @post, url: user_posts_path(@user), local: true, class: "form-inline shadow p-3" do |f| %>
             <%= f.text_area :body, class: "form-control col-6", placeholder: "write your post..." %>
             <label class="btn btn-outline-success col-3">
               Add Photo
