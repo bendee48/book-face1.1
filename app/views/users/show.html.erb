@@ -20,7 +20,7 @@
           </div>
           <div class="modal-body">
             <% @user.all_friends.each do |friend| %>
-              <%= link_to friend.name, user_path(friend), class: "btn btn-info btn-block" %>
+              <%= link_to friend.name, user_path(friend), class: "btn btn-outline-success btn-block" %>
             <% end %>
           </div>
           <div class="modal-footer">
@@ -31,7 +31,6 @@
     </div>
   </div>
 </div>
-
 
 <% unless friends_already?(@user) || @user.id == current_user.id %>
   <div class="container d-flex justify-content-center mt-4">
@@ -45,7 +44,6 @@
     </div>
   </div>
 <% end %>
-
 
 <div class="container">
   <% if friends_already?(@user) || @user.id == current_user.id %>
