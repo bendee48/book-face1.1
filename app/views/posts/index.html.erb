@@ -15,9 +15,9 @@
             <% end %>
           </div>
           <div class="card-footer text-muted">
-            <p class="d-inline font-italic"><%= time_ago_in_words(post.created_at) %> ago - </p>
-            <p class="d-inline font-italic">likes: <%= post.likes.count %></p>
-            <%= button_to 'like', likes_path, params: { user_id: current_user.id, post_id: post.id }, class: "btn btn-outline-success btn-small d-inline mt-2" %>
+            <small class="d-inline font-italic"><%= time_ago_in_words(post.created_at) %> ago - </small>
+            <small class="d-inline font-italic">likes: <%= post.likes.count %></small>
+            <%= button_to 'like', likes_path, params: { user_id: current_user.id, post_id: post.id }, class: "btn btn-outline-success d-inline mt-2" %>
           </div>
         </div>
       </div>
