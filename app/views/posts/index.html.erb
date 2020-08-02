@@ -20,16 +20,22 @@
             <%= button_to 'like', likes_path, params: { user_id: current_user.id, post_id: post.id }, class: "btn btn-outline-success d-inline mt-2" %>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="row justify-content-center">
-      <div class="col-8">
         <button class="btn btn-outline-success btn-block" type="button" data-toggle="collapse" data-target="#collapseComments" aria-expanded="false" aria-controls="collapseComments">
           Comments
         </button>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-6">
+        
         <div class="collapse mt-2" id="collapseComments">
+          <%= form_with model: @comment, url: comments_path, local: true, class: "form-inline" do |f| %>
+            <%= f.hidden_field :post_id, value: post.id %>
+            <%= f.text_area :body, class: "form-control col-8 font-italic", placeholder: "comment" %>
+            <%= f.submit class: "btn btn-outline-success col-4" %>
+          <% end %>
           <% post.comments.each do |comment| %>
-            <div class="card card-body">
+            <div class="card card-body mt-2">
               <%= comment.body %>
               <small class="text-right">- <%= comment.user.name %></small>
             </div>
@@ -39,33 +45,3 @@
     </div>
   </div>
 <% end %>
-
-
-<!--old-->
-
-<ul>
-  <% @posts.each do |post| %>
-    <li><%= post.body %></li>
-    <% if post.photo.attached? %>
-      <div><%= image_tag(post.photo, size: '100') %></div>
-    <% end %>
-    <p>- <%= time_ago_in_words(post.created_at) %> ago</p>
-    <p>- <%= post.user.name %></p>
-    <p>Likes: <%= post.likes.count %></p>
-    <%= button_to 'like', likes_path, params: { user_id: current_user.id, post_id: post.id } %>
-
-    <h4>Comments</h4>
-        <ul>
-          <% post.comments.each do |comment| %>
-            <li><%= comment.body %></li>
-            <p>- <%= comment.user.name %></p>
-          <% end %>
-        </ul>
-
-      <%= form_with model: @comment, url: comments_path, local: true do |f| %>
-        <%= f.hidden_field :post_id, value: post.id %>
-        <%= f.text_area :body %>
-        <%= f.submit %>
-      <% end %>
-  <% end %>
-</ul>
