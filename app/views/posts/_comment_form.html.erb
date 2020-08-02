@@ -1,0 +1,5 @@
+<%= form_with model: @comment, url: comments_path, local: true, class: "form-inline" do |f| %>
+  <%= f.hidden_field :post_id, value: post.id %>
+  <%= f.text_area :body, class: "form-control col-8 font-italic", placeholder: "comment" %>
+  <%= f.submit class: "btn btn-outline-success col-4" %>
+<% end %>

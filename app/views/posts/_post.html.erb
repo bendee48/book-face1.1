@@ -1,0 +1,38 @@
+<div class="container mt-4">
+  <div class="row justify-content-md-center">
+    <div class="col-8">
+      <div class="card text-center">
+        <div class="card-header font-italic text-muted">
+          posted by <%= post.user.name %>
+        </div>
+        <div class="card-body">
+          <p class="card-text"><%= post.body %></p>
+          <% if post.photo.attached? %>
+            <div><%= image_tag(post.photo, size: '100') %></div>
+          <% end %>
+        </div>
+        <div class="card-footer text-muted">
+          <small class="d-inline font-italic"><%= time_ago_in_words(post.created_at) %> ago - </small>
+          <small class="d-inline font-italic">likes: <%= post.likes.count %></small>
+          <%= button_to 'like', likes_path, params: { user_id: current_user.id, post_id: post.id }, class: "btn btn-outline-success d-inline mt-2" %>
+        </div>
+      </div>
+      <button class="btn btn-outline-success btn-block" type="button" data-toggle="collapse" data-target="#collapseComments" aria-expanded="false" aria-controls="collapseComments">
+        Comments
+      </button>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-6">        
+      <div class="collapse mt-2" id="collapseComments">
+        <%= render partial: 'posts/comment_form', locals: { post: post } %>
+        <% post.comments.each do |comment| %>
+          <div class="card card-body mt-2">
+            <%= comment.body %>
+            <small class="text-right">- <%= comment.user.name %></small>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
