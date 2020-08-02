@@ -1,58 +1,44 @@
-<h1><%= @user.name.titleize %>'s Profile</h1>
-
-<% if @user.profile_pic.attached? %>
-  <%= image_tag(url_for(@user.profile_pic), size: '100') %>
-<% end %>
-
-<% unless friends_already?(@user) || @user.id == current_user.id %>
-  <p>We need to be friends for you to see my profile.</p>
-  <%= button_to 'Friend Me',  friend_requests_path, params: { friend_id: @user.id } %>
-<% end %>
-
-<% if friends_already?(@user) || @user.id == current_user.id %>
-  <h2>Posts</h2>
-
-  <% if current_user == @user %>
-    <%= form_with model: @post, url: user_posts_path(@user), local: true do |f| %>
-      <%= f.text_area :body %>
-      <%= f.file_field :photo %>
-      <%= f.submit %>
+<div class="container">
+  <div class="row justify-content-center mt-4">
+    <h1 class="text-center mt-4 mr-4"><%= @user.name.titleize %>'s Profile</h1>
+    <% if @user.profile_pic.attached? %>
+      <%= image_tag(url_for(@user.profile_pic), size: '100') %>
     <% end %>
+  </div>
+</div>
+
+<div class="container">
+  <% unless friends_already?(@user) || @user.id == current_user.id %>
+    <p>We need to be friends for you to see my profile.</p>
+    <%= button_to 'Friend Me',  friend_requests_path, params: { friend_id: @user.id } %>
   <% end %>
 
-  <% if @posts %>
-    <% @posts.each do |post| %>
-      <h4>A Post</h4>
-      <p><%= post.body %></p>
-      <% if post.photo.attached? %>
-        <p><%= image_tag(post.photo, size: '200') %></p>
-      <% end %>
-      <p>- <%= post.created_at.strftime("%H:%M | %d/%m/%y") %></p>
-
-      <!-- Likes-->
-      <p>Likes: <%= post.likes.count %></p>
-      <%= button_to 'like', likes_path, params: { user_id: current_user.id, post_id: post.id } %>
-      
-      <!-- Comments-->
-      <h4>Comments</h4>
-        <ul>
-          <% post.comments.each do |comment| %>
-            <li><%= comment.body %></li>
-            <p>- <%= comment.user.name %></p>
+  <% if friends_already?(@user) || @user.id == current_user.id %>
+    <div class="row justify-content-center">
+      <div class="col-8">
+        <h2>Posts</h2>
+        <% if current_user == @user %>
+          <%= form_with model: @post, url: user_posts_path(@user), local: true, class: "form-inline" do |f| %>
+            <%= f.text_area :body, class: "form-control col-6", placeholder: "write your post..." %>
+            <label class="btn btn-outline-success col-3">
+              Add Photo
+              <span style="display:none">
+                <%= f.file_field :photo, class: "btn form-control-file" %>
+              </span>
+            </label>
+            
+            <%= f.submit class: "btn btn-outline-success form-control col-3" %>
           <% end %>
-        </ul>
+        <% end %>
+      </div>
+    </div>
 
-      <%= form_with model: @comment, url: comments_path, local: true do |f| %>
-        <%= f.hidden_field :post_id, value: post.id %>
-        <%= f.text_area :body %>
-        <%= f.submit %>
+    <% if @posts %>
+      <% @posts.each do |post| %>
+        <%= render partial: 'posts/post', locals: { post: post } %>
       <% end %>
-
     <% end %>
   <% end %>
-<% end %>
+</div>
 
-<h2>Friends</h2>
-<% @user.all_friends.each do |f| %>
-  <p><%= f.name %></p>
-<% end %>
+
