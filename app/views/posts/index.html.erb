@@ -3,7 +3,7 @@
 <% @posts.each do |post| %>
   <div class="container mt-4">
     <div class="row justify-content-md-center">
-      <div class="col-6">
+      <div class="col-8">
         <div class="card text-center">
           <div class="card-header font-italic text-muted">
             posted by <%= post.user.name %>
@@ -22,8 +22,24 @@
         </div>
       </div>
     </div>
+    <div class="row justify-content-center">
+      <div class="col-8">
+        <button class="btn btn-outline-success btn-block" type="button" data-toggle="collapse" data-target="#collapseComments" aria-expanded="false" aria-controls="collapseComments">
+          Comments
+        </button>
+        <div class="collapse mt-2" id="collapseComments">
+          <% post.comments.each do |comment| %>
+            <div class="card card-body">
+              <%= comment.body %>
+              <small class="text-right">- <%= comment.user.name %></small>
+            </div>
+          <% end %>          
+        </div>
+      </div>
+    </div>
   </div>
 <% end %>
+
 
 <!--old-->
 
