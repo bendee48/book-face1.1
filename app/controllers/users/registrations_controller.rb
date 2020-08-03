@@ -17,7 +17,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     begin
       UserMailer.with(user: @user).welcome_email.deliver_now #unless Rails.env.production?
     rescue
-      redirect_to root_path
+      flash.notice = "Erm"
     end
   end
 
