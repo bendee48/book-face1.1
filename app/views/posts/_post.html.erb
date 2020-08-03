@@ -29,7 +29,7 @@
       <% post.comments.each do |comment| %>
         <div class="card card-body mt-2">
           <%= comment.body %>
-          <small class="text-right">- <%= comment.user.name %></small>
+          <small class="text-right font-italic text-muted">- <%= comment.user.name %>: <%= time_ago_in_words(comment.created_at) %></small>
         </div>
       <% end %>
     </div>

@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :user
   has_many :likes, as: :likeable, dependent: :destroy
-  has_many :comments, as: :commentable, dependent: :destroy
+  has_many :comments, -> { order "created_at DESC" }, as: :commentable, dependent: :destroy
   has_one_attached :photo, dependent: :destroy
 
   validates :body, presence: true
