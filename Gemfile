@@ -37,6 +37,8 @@ gem 'omniauth-facebook', '~> 6.0'
 gem "aws-sdk-s3", require: false
 # Sendgrid Email for Production
 gem 'sendgrid-ruby', '~> 6.3', '>= 6.3.3'
+# MailGun
+gem 'mailgunner', '~> 2.4'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
