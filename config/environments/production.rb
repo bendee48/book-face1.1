@@ -65,14 +65,24 @@ Rails.application.configure do
   #Setup mailer for SendGrid config
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.smtp_settings = {
+  # config.action_mailer.smtp_settings = {
+  #   :user_name => ENV['SENDGRID_USERNAME'],
+  #   :password => ENV['SENDGRID_PASSWORD'],
+  #   :domain => 'https://pacific-journey-50747.herokuapp.com',
+  #   :address => 'smtp.sendgrid.net',
+  #   :port => 587,
+  #   :authentication => :plain,
+  #   :enable_starttls_auto => true
+  # }
+  ActionMailer::Base.smtp_settings = {
+    :address => "smtp.sendgrid.net",
+    :port => 465,
+    :domain => "https://pacific-journey-50747.herokuapp.com",
+    :ssl => true,
+    :enable_starttls_auto => true,
+    :authentication => :login,
     :user_name => ENV['SENDGRID_USERNAME'],
-    :password => ENV['SENDGRID_PASSWORD'],
-    :domain => 'https://pacific-journey-50747.herokuapp.com/',
-    :address => 'smtp.sendgrid.net',
-    :port => 587,
-    :authentication => :plain,
-    :enable_starttls_auto => true
+    :password => ENV['SENDGRID_PASSWORD']
   }
 
   # Ignore bad email addresses and do not raise email delivery errors.
