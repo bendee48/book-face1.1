@@ -14,7 +14,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
     @user = current_user
     @url = root_url
-    UserMailer.with(user: @user).welcome_email.deliver_now #unless Rails.env.production?
+    begin
+      UserMailer.with(user: @user).welcome_email.deliver_now #unless Rails.env.production?
+    rescue
+      redirect_to root_path
+    end
   end
 
   # GET /resource/edit
