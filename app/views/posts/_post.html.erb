@@ -16,7 +16,7 @@
         <%= button_to 'like', likes_path, params: { user_id: current_user.id, post_id: post.id }, class: "btn btn-outline-success d-inline mt-2" %>
       </div>
     </div>
-    <button class="btn btn-outline-success btn-block" type="button" data-toggle="collapse" data-target="#collapseComments" aria-expanded="false" aria-controls="collapseComments">
+    <button class="btn btn-outline-success btn-block" type="button" data-toggle="collapse" data-target=<%= "#collapseComments-#{post.id}" %> aria-expanded="false" aria-controls="collapseComments">
       Comments <span class="badge badge-success"><%= post.comments.count %></span>
     </button>
   </div>
@@ -24,7 +24,7 @@
 <!--Comments-->
 <div class="row justify-content-center">
   <div class="col-6">        
-    <div class="collapse mt-2" id="collapseComments">
+    <div class="collapse mt-2" id=<%= "collapseComments-#{post.id}" %>>
       <%= render partial: 'posts/comment_form', locals: { post: post } %>
       <% post.comments.each do |comment| %>
         <div class="card card-body mt-2">
