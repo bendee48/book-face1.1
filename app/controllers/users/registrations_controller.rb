@@ -17,7 +17,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     begin
       UserMailer.with(user: @user).welcome_email.deliver_now #unless Rails.env.production?
     rescue
-      flash.notice = "Erm"
+      flash.notice = "Successfully signed up. (Welcome email failed to send)"
     end
   end
 
