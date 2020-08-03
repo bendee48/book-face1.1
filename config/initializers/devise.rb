@@ -308,5 +308,11 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
-  config.omniauth :facebook, Rails.application.credentials.dig(:facebook, :FACEBOOK_APP_ID), Rails.application.credentials.dig(:facebook, :FACEBOOK_APP_SECRET), token_params: { parse: :json }
+  if Rails.env.development?
+    config.omniauth :facebook, Rails.application.credentials.dig(:facebook, :FACEBOOK_APP_ID), Rails.application.credentials.dig(:facebook, :FACEBOOK_APP_SECRET), token_params: { parse: :json }, callback_url: "http://localhost:3000/users/auth/facebook/callback"
+  end
+
+  if Rails.env.production?
+    config.omniauth :facebook, Rails.application.credentials.dig(:facebook, :FACEBOOK_APP_ID), Rails.application.credentials.dig(:facebook, :FACEBOOK_APP_SECRET), token_params: { parse: :json }, callback_url: "https://pacific-journey-50747.herokuapp.com//users/auth/facebook/callback"
+  end
 end
