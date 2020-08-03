@@ -1,5 +1,9 @@
 <h1 class="text-center mt-4">Timeline</h1>
 
+<% if @posts.empty? %>
+  <h4 class="text-center mt-4">There's nothing here :-( Make some posts or add a friend!</h4>
+<% end %>
+
 <div class="container mt-4">
   <% @posts.each do |post| %>
     <%= render partial: 'posts/post', locals: {post: post} %>
