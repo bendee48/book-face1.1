@@ -10,18 +10,18 @@ class User < ApplicationRecord
   validates :name, presence: true
 
   has_many :friend_friendships, foreign_key: :friend_of_id, class_name: 'Friendship', dependent: :destroy
-  has_many :friends, through: :friend_friendships, source: :friend
+  has_many :friends, through: :friend_friendships, source: :friend, dependent: :destroy
   
   has_many :friend_of_friendships, foreign_key: :friend_id, class_name: 'Friendship', dependent: :destroy
-  has_many :friend_ofs, through: :friend_of_friendships, source: :friend_of
+  has_many :friend_ofs, through: :friend_of_friendships, source: :friend_of, dependent: :destroy
 
   has_many :friend_requests, dependent: :destroy
-  has_many :request_users, through: :friend_requests, source: :request_user
+  has_many :request_users, through: :friend_requests, source: :request_user, dependent: :destroy
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  has_one_attached :profile_pic
+  has_one_attached :profile_pic, dependent: :destroy
 
   def self.from_omniauth(auth)
     image = auth.info.image
