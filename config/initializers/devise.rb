@@ -313,6 +313,6 @@ Devise.setup do |config|
   end
 
   if Rails.env.production?
-    config.omniauth :facebook, Rails.application.credentials.dig(:facebook, :FACEBOOK_APP_ID), Rails.application.credentials.dig(:facebook, :FACEBOOK_APP_SECRET), token_params: { parse: :json }, callback_url: "https://pacific-journey-50747.herokuapp.com//users/auth/facebook"
+    config.omniauth :facebook, Rails.application.credentials.dig(:facebook, :FACEBOOK_APP_ID), Rails.application.credentials.dig(:facebook, :FACEBOOK_APP_SECRET), token_params: { parse: :json }, callback_url: "https://pacific-journey-50747.herokuapp.com//users/auth/facebook/callback"
   end
 end
