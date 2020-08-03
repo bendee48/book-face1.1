@@ -17,7 +17,7 @@ module BookFace
     # the framework and any gems in your application.
 
     # Mailer urls
-    config.action_mailer.default_url_options = { host: 'localhost:3000' }
+    config.action_mailer.default_url_options = { host: "https://pacific-journey-50747.herokuapp.com" }
 
     if Rails.env.development?
       console do
