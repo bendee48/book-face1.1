@@ -9,4 +9,5 @@ A Rails project building a social media site (via the [Odin Project](https://www
   - Profile Pictures
   - Posts (text and images)
   - Friends and friend request system.
-  
+
+  [Live Version](https://pacific-journey-50747.herokuapp.com/)
