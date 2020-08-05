@@ -12,11 +12,7 @@
   <body class="d-flex flex-column">
     <div id="page-content">
       <%= render 'layouts/navbar' %>
-      <% if flash.notice %>
-        <div class="alert alert-success text-center" role="alert">
-          <%= flash.notice %>
-        </div>
-      <% end %>
+      <%= render 'layouts/notices' %>
       <%= yield %>
     </div>
     <%= render 'layouts/footer' %>
