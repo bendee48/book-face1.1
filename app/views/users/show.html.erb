@@ -20,7 +20,10 @@
           </div>
           <div class="modal-body">
             <% @user.all_friends.each do |friend| %>
-              <%= link_to friend.name, user_path(friend), class: "btn btn-outline-success btn-block" %>
+              <div class="row mb-2 ml-2 p-2">
+              <%= link_to friend.name, user_path(friend), class: "btn btn-outline-success col-8 mr-2" %>
+              <%= link_to "Unfriend", friendship_path(friend.id), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-outline-danger col-3" %>
+              </div>
             <% end %>
           </div>
           <div class="modal-footer">
