@@ -2,7 +2,7 @@
   <div class="col-8">
     <div class="card text-center">
       <div class="card-header font-italic text-muted">
-        posted by <span class="name-text"><%= post.user.name %></span>
+        posted by <%= link_to post.user.name, post.user, class: "name-text text-decoration-none" %>
       </div>
       <div class="card-body">
         <p class="card-text"><%= post.body %></p>
@@ -16,7 +16,9 @@
         <div class="row d-flex justify-content-center">
           <div class="btn-group" role="group" aria-label="Like and Delete">
             <%= button_to 'like', likes_path, params: { user_id: current_user.id, post_id: post.id }, class: "btn btn-outline-success mt-2 mr-1" %>
-            <%= button_to 'delete', user_post_path(current_user, post.id), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger mt-2" %>
+            <% if post.user == current_user %>
+              <%= button_to 'delete', user_post_path(current_user, post.id), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger mt-2" %>
+            <% end %>
           </div>
         </div>
       </div>
@@ -35,6 +37,9 @@
         <div class="card card-body mt-2">
           <%= comment.body %>
           <small class="text-right font-italic text-muted">- <%= comment.user.name %>: <%= time_ago_in_words(comment.created_at) %></small>
+          <% if comment.user == current_user %>
+            <small><%= link_to "delete", comment_path(comment), method: :delete, data: { confirm: "Are you sure?"} %></small>
+          <% end %>
         </div>
       <% end %>
     </div>
