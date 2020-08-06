@@ -2,7 +2,7 @@
   <div class="col-8">
     <div class="card text-center">
       <div class="card-header font-italic text-muted">
-        posted by <%= post.user.name %>
+        posted by <span class="name-text"><%= post.user.name %></span>
       </div>
       <div class="card-body">
         <p class="card-text"><%= post.body %></p>
@@ -13,7 +13,12 @@
       <div class="card-footer text-muted">
         <small class="d-inline font-italic"><%= time_ago_in_words(post.created_at) %> ago - </small>
         <small class="d-inline font-italic">likes: <%= post.likes.count %></small>
-        <%= button_to 'like', likes_path, params: { user_id: current_user.id, post_id: post.id }, class: "btn btn-outline-success d-inline mt-2" %>
+        <div class="row d-flex justify-content-center">
+          <div class="btn-group" role="group" aria-label="Like and Delete">
+            <%= button_to 'like', likes_path, params: { user_id: current_user.id, post_id: post.id }, class: "btn btn-outline-success mt-2 mr-1" %>
+            <%= button_to 'delete', user_post_path(current_user, post.id), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger mt-2" %>
+          </div>
+        </div>
       </div>
     </div>
     <button class="btn btn-outline-success btn-block" type="button" data-toggle="collapse" data-target=<%= "#collapseComments-#{post.id}" %> aria-expanded="false" aria-controls="collapseComments">
