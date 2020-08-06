@@ -39,6 +39,8 @@ gem "aws-sdk-s3", require: false
 gem 'sendgrid-ruby', '~> 6.3', '>= 6.3.3'
 # MailGun
 gem 'mailgunner', '~> 2.4'
+# Pagination
+gem 'will_paginate', '~> 3.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

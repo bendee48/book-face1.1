@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.posts_of_user_and_friends(current_user)
+    @posts = Post.paginate(page: params[:page], per_page: 5).posts_of_user_and_friends(current_user)
     @comment = Comment.new
   end
 

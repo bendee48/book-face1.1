@@ -67,9 +67,19 @@
     </div>
 
     <% if @posts %>
+      <div class="d-flex justify-content-center mt-4 mb-4">
+        <div class="digg_pagination">
+          <%= will_paginate @posts, :container => false %>
+        </div>
+      </div>
       <% @posts.each do |post| %>
         <%= render partial: 'posts/post', locals: { post: post } %>
       <% end %>
+      <div class="d-flex justify-content-center mt-4 mb-4">
+        <div class="digg_pagination">
+          <%= will_paginate @posts, :container => false %>
+        </div>
+      </div>
     <% end %>
   <% end %>
 </div>
