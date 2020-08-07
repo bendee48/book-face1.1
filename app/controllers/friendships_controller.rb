@@ -7,7 +7,7 @@ class FriendshipsController < ApplicationController
       flash.notice = "You are now friends with #{@potential_friend.name}"
       redirect_to current_user
     else
-      flash.notice = "You are already friends."
+      flash.alert = "You are already friends."
       redirect_to current_user
     end
 

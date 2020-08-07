@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
       flash.notice = "Comment posted."
       redirect_back(fallback_location: root_path)
     else
-      flash.notice = @comment.errors[:body].join(',')
+      flash.alert = @comment.errors[:body].join(',')
       redirect_back(fallback_location: root_path)
     end
   end
@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
 
     @comment.destroy
 
-    flash.notice = "Comment deleted."
+    flash.alert = "Comment deleted."
 
     redirect_back fallback_location: root_path
   end

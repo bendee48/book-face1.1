@@ -12,7 +12,7 @@ class PostsController < ApplicationController
       flash.notice = "Posted."
       redirect_to @user
     else
-      flash.notice = "Post failed. " + @post.errors.full_messages.first
+      flash.alert = "Post failed. " + @post.errors.full_messages.first
       redirect_to @user
     end
   end
@@ -22,7 +22,7 @@ class PostsController < ApplicationController
 
     @post.destroy
 
-    flash.notice = "Post deleted"
+    flash.alert = "Post deleted"
 
     redirect_back fallback_location: root_path
   end

@@ -1,5 +1,7 @@
-<% if flash.notice %>
-  <div class="alert alert-success text-center" role="alert">
-    <%= flash.notice %>
+<% flash.each do |type, msg| %>
+  <% color = type == 'notice' ? 'success' : 'danger' %>
+  <div class="alert alert-<%= color %> text-center" role="alert">
+    <%= msg %>
   </div>
 <% end %>
+

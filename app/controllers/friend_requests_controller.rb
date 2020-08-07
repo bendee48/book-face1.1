@@ -12,7 +12,7 @@ class FriendRequestsController < ApplicationController
       flash.notice = "Friend request sent."
       redirect_back(fallback_location: root_path)
     else
-      flash.notice = @friend_request.errors[:user_id].join(',')
+      flash.alert = @friend_request.errors[:user_id].join(',')
       redirect_back(fallback_location: root_path)
     end    
   end
