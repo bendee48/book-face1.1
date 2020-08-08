@@ -7,7 +7,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
 
-  validates :name, presence: true
+  validates :name, presence: true, length: { in: 3..30 }
 
   has_many :friend_friendships, foreign_key: :friend_of_id, class_name: 'Friendship', dependent: :destroy
   has_many :friends, through: :friend_friendships, source: :friend, dependent: :destroy
@@ -20,6 +20,8 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
+
+  has_many :likes, dependent: :destroy
 
   has_one_attached :profile_pic, dependent: :destroy
 

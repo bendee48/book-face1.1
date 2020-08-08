@@ -16,6 +16,16 @@ RSpec.describe User, type: :model do
     expect(subject).to_not be_valid
   end
 
+  it 'is not valid if name is longer than 30 characters' do
+    subject.name = "Michael Michaela Michaelson the Third"
+    expect(subject).to_not be_valid
+  end
+
+  it 'is not valid if name is shorter than 3 characters' do
+    subject.name = "Po"
+    expect(subject).to_not be_valid
+  end
+
   it 'is not valid without an email' do
     subject.email = nil
     expect(subject).to_not be_valid
