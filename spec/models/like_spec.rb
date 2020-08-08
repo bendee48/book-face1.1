@@ -1,13 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Like, type: :model do
-  let(:user) { User.create!(name: "John", email: "john@email.com", password: "password") }
-  let(:post) { Post.create!(body: "Hi there", user_id: user.id) }
-  subject { described_class.new(id: 1,
-                                user_id: user.id,
-                                likeable_type: 'Post',
-                                likeable_id: post.id)
-  }
+  subject { create :like }
 
   
   it "is valid with valid attributes" do

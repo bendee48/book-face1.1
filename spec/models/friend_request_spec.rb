@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe FriendRequest, type: :model do
-  let(:user) { User.create!(name:"John", email: "john@email.com", password: "password") }
-  let(:friend) { User.create!(name:"Gail", email: "gail@email.com", password: "password") }
-  subject { described_class.new(user_id: user.id, friend_id: friend.id) }
+  subject { create :friend_request }
 
   it "is valid with valid attributes" do
     expect(subject).to be_valid

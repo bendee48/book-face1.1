@@ -1,12 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  let(:user) { User.create!(name: "John", email: "john@email.com", password: "password") }
-  subject { described_class.new(body: "Lorem ipsum dolor sit amet, per doming evertitur complectitur eu.",
-                                user_id: user.id
-                                )
-  }
-  
+  subject { build_stubbed :post }
+
   it "is valid with valid attributes" do
     expect(subject).to be_valid
   end
