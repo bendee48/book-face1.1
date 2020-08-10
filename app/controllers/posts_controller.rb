@@ -2,6 +2,8 @@ class PostsController < ApplicationController
   def index
     @posts = Post.paginate(page: params[:page], per_page: 5).posts_of_user_and_friends(current_user)
     @comment = Comment.new
+    @post = Post.new
+    @user = current_user
   end
 
   def create
@@ -10,10 +12,10 @@ class PostsController < ApplicationController
 
     if @post.save
       flash.notice = "Posted."
-      redirect_to @user
+      redirect_back fallback_location: root_path
     else
       flash.alert = "Post failed. " + @post.errors.full_messages.first
-      redirect_to @user
+      redirect_back fallback_location: root_path
     end
   end
 

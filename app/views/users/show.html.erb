@@ -54,17 +54,7 @@
       <div class="col-8 mt-4">
         <h2>Posts</h2>
         <% if current_user == @user %>
-          <%= form_with model: @post, url: user_posts_path(@user), local: true, class: "form-inline shadow p-3" do |f| %>
-            <%= f.text_area :body, class: "form-control col-6", placeholder: "write your post..." %>
-            <label class="btn btn-outline-success col-3">
-              Add Photo
-              <span style="display:none">
-                <%= f.file_field :photo, class: "btn form-control-file" %>
-              </span>
-            </label>
-            
-            <%= f.submit class: "btn btn-outline-success form-control col-3" %>
-          <% end %>
+          <%= render partial: 'posts/post_form' %>
         <% end %>
       </div>
     </div>
@@ -76,7 +66,7 @@
         </div>
       </div>
       <% @posts.each do |post| %>
-        <%= render partial: 'posts/post', locals: { post: post } %>
+        <%= render partial: 'posts/posts', locals: { post: post } %>
       <% end %>
       <div class="d-flex justify-content-center mt-4 mb-4">
         <div class="digg_pagination">
