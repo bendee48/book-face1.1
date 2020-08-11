@@ -41,4 +41,25 @@ RSpec.describe User, type: :model do
       expect(subject).to respond_to(:friend_ofs)
     end
   end
+
+  describe "#all_friends" do
+    subject { create :user }
+
+    it "returns all the user's friends" do
+      friend1 = create :user, name: "Bob" 
+      friend2 = create :user, name: "Emma"
+      subject.friends << friend1
+      friend2.friends << subject
+      expect(subject.all_friends.count).to eql 2
+    end
+  end
+
+  describe "#friend_ids" do
+    it "returns all ids of user's friends" do
+      friend1 = create :user, name: "Bob" 
+      friend2 = create :user, name: "Emma"
+      subject.friends << friend1 << friend2
+      expect(subject.friend_ids).to eql [friend1.id, friend2.id]
+    end
+  end
 end
