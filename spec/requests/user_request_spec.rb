@@ -9,6 +9,7 @@ RSpec.describe "Users", type: :request do
     it "returns http success" do
       get users_path
       expect(response).to have_http_status(:ok)
+      expect(response.body).to include(user.name)
     end
   end
 
@@ -16,6 +17,7 @@ RSpec.describe "Users", type: :request do
     it "returns http success" do
       get user_path(user.id)
       expect(response).to have_http_status(:ok)
+      expect(response.body).to include(user.name)
     end
   end
 end
