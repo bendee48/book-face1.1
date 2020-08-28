@@ -44,8 +44,4 @@ class User < ApplicationRecord
   def friend_ids
     all_friends.map { |user| user.id }
   end
-
-  def user_comments
-    name + " All comments tht exist: #{Comment.all.count}"
-  end
 end
