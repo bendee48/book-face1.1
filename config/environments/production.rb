@@ -66,7 +66,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { host: 'https://pacific-journey-50747.herokuapp.com', protocol: 'https' }
 
-  config.action_controller.smtp_settings = {
+  config.action_mailer.smtp_settings = {
     :address              => "smtp.gmail.com",
     :port                 => 587,
     :host                 => 'heroku.com',
