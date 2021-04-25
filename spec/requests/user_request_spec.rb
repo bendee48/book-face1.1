@@ -5,6 +5,8 @@ RSpec.describe "Users", type: :request do
 
   before(:each) { sign_in user }
 
+  # test non logged in user
+
   describe "GET /users" do
     it "returns http success" do
       get users_path

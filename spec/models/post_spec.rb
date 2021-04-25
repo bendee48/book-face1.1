@@ -32,7 +32,7 @@ RSpec.describe Post, type: :model do
       post2 = create :post
       user.posts << post1
       friend.posts << post2
-      expect(subject.class.posts_of_user_and_friends(user).count).to eql 2
+      expect(described_class.posts_of_user_and_friends(user).count).to eql 2
     end
   end
 end
